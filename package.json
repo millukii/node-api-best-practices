@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-best-practices",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/run.js",
+  "scripts": {
+    "start": "node src/run.js",
+    "start:resetdb": "FORCE_DB_RESET=true node src/run.js",
+    "seeddata": "node scripts/seed_sampled.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-hbs": "^2.3.4",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.5.0"
+  },
+  "devDependencies": {
+    "debug": "^2.6.9"
+  }
+}
