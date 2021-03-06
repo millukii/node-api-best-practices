@@ -35,8 +35,8 @@ const Comment = db.define("comment", {
 Article.belongsTo(User, { as: "author" });
 User.hasMany(Article, { foreignKey: "authorId" });
 
-Comment.belongsTo(Article);
-Article.hasMany(Comment);
+Comment.belongsTo(Article, { as: "comment" });
+Article.hasMany(Comment, { foreignKey: "articleId" });
 
 Comment.belongsTo(User);
 User.hasMany(Comment);

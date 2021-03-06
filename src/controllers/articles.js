@@ -35,7 +35,6 @@ async function fetchArticles() {
 
 async function fetchArticleById(articleId) {
   try {
-    console.log("articulo objeto", Article);
     return await Article.findByPk(articleId, {
       include: [
         {
