@@ -1,5 +1,5 @@
 //const { ForeignKeyConstraintError } = require("sequelize/types");
-const { Articles, Users } = require("../models/db");
+const { Article, User, Comment } = require("../models/db");
 
 async function createArticle(title, content, authorId) {
   if (typeof title != "string" || title.length < 1) {
@@ -13,7 +13,7 @@ async function createArticle(title, content, authorId) {
   }
 
   try {
-    return await Articles.create({
+    return await Article.create({
       title,
       content,
       authorId,
@@ -25,15 +25,36 @@ async function createArticle(title, content, authorId) {
 
 async function fetchArticles() {
   try {
-    return await Articles.findAll({
-      include: [{ model: Users, as: "author", attributes: ["username"] }],
+    return await Article.findAll({
+      include: [{ model: User, as: "author", attributes: ["username"] }],
     });
   } catch (error) {
     throw error;
   }
 }
 
+async function fetchArticleById(articleId) {
+  try {
+    console.log("articulo objeto", Article);
+    return await Article.findByPk(articleId, {
+      include: [
+        {
+          model: Comment,
+          include: [
+            {
+              model: User,
+              attributes: ["username"],
+            },
+          ],
+        },
+      ],
+    });
+  } catch (error) {
+    throw error.stack;
+  }
+}
 module.exports = {
   fetchArticles,
+  fetchArticleById,
   createArticle,
 };

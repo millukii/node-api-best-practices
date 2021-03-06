@@ -4,14 +4,15 @@ const { DataTypes } = Sequelize;
 const db = new Sequelize("sampledb", "sampleuser", "samplepass", {
   dialect: "mysql",
   host: "localhost",
+  logging: false,
 });
 
-const Users = db.define("user", {
+const User = db.define("user", {
   username: { type: DataTypes.STRING(30), unique: true, allowNull: false },
   passwords: { type: DataTypes.STRING, allowNull: true },
 });
 
-const Articles = db.define("article", {
+const Article = db.define("article", {
   title: {
     type: DataTypes.STRING(150),
     allowNull: true,
@@ -21,7 +22,7 @@ const Articles = db.define("article", {
   },
 });
 
-const Comments = db.define("comment", {
+const Comment = db.define("comment", {
   title: {
     type: DataTypes.STRING(150),
     allowNull: true,
@@ -31,18 +32,18 @@ const Comments = db.define("comment", {
   },
 });
 
-Articles.belongsTo(Users, { as: "author" });
-Users.hasMany(Articles, { foreignKey: "authorId" });
+Article.belongsTo(User, { as: "author" });
+User.hasMany(Article, { foreignKey: "authorId" });
 
-Comments.belongsTo(Articles);
-Articles.hasMany(Comments);
+Comment.belongsTo(Article);
+Article.hasMany(Comment);
 
-Comments.belongsTo(Users);
-Users.hasMany(Comments);
+Comment.belongsTo(User);
+User.hasMany(Comment);
 
 module.exports = {
   db,
-  Users,
-  Articles,
-  Comments,
+  User,
+  Article,
+  Comment,
 };

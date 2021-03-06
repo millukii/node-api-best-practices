@@ -12,8 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.3",
     "express": "^4.17.1",
     "express-hbs": "^2.3.4",
+    "handlebars": "^4.5.3",
     "mysql2": "^2.2.5",
     "sequelize": "^6.5.0"
   },
