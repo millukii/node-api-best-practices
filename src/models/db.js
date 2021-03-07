@@ -9,7 +9,7 @@ const db = new Sequelize("sampledb", "sampleuser", "samplepass", {
 
 const User = db.define("user", {
   username: { type: DataTypes.STRING(30), unique: true, allowNull: false },
-  passwords: { type: DataTypes.STRING, allowNull: true },
+  password: { type: DataTypes.STRING, allowNull: false },
 });
 
 const Article = db.define("article", {

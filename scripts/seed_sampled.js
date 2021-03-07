@@ -6,6 +6,7 @@ async function seed() {
     await models.User.bulkCreate([
       { username: "firstuser", password: "jojojo123" },
       { username: "seconduser", password: "jojojo123" },
+      { username: "millukii", password: "12345" },
     ]);
 
     await models.Article.bulkCreate([
